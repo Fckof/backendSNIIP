@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/style.css">
+	<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+	<title>Display</title>
+</head>
+	<body>
+		<div class="wrap">
+		
+			<div class="hex" value='11' id="h11" >1
+			    <div class="corner-1"></div>
+			    <div class="corner-2"></div>
+			</div>
+			
+			<div class="hex" value='12' id="h12" >2
+			    <div class="corner-1"></div>
+			    <div class="corner-2"></div>
+			</div>
+
+			<div class="hex" value='13' id="h13" >3
+			    <div class="corner-1"></div>
+			    <div class="corner-2"></div>
+			</div></div>
+		<script>
+			getData();
+			setInterval(getData, 5000);
+
+			function getData(){
+			$.ajax({
+			    type: 'GET',
+			    url: 'bd.php',
+			    dataType: "json",
+			    success: function(data){
+			    	
+			    	// for( var i in data){
+			    	// 	console.log(data[i].status);
+			    	// }
+			    	for(var i in data){
+			    		switch(data[i].status){
+			    			case 'active':
+			    			$(`#h${data[i].index}`).removeClass('red_hex');
+			    			$(`#h${data[i].index}`).removeClass('green_hex');
+			    			$(`#h${data[i].index}`).addClass('blue_hex');
+			    			break;
+			    			case 'static':
+			    			$(`#h${data[i].index}`).removeClass('red_hex');
+			    			$(`#h${data[i].index}`).removeClass('blue_hex');
+			    			$(`#h${data[i].index}`).addClass('green_hex');
+			    			break;
+			    			case 'inactive':
+			    			$(`#h${data[i].index}`).removeClass('blue_hex');
+			    			$(`#h${data[i].index}`).removeClass('green_hex');
+			    			$(`#h${data[i].index}`).addClass('red_hex');
+			    			break;
+			    		}
+			    	}
+		    	}
+		  	});}
+		</script>
+	</body>
+</html>

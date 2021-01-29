@@ -1,0 +1,36 @@
+jQuery(document).ready(function($) {
+	alert('qw');
+});
+// jQuery(document).ready(function() {
+// 	alert('sd');
+
+// 	jQuery(document).on('click', '.btn', function() {
+// 		$.ajax({
+// 		url: 'bd.php',
+// 		type: 'GET',
+// 		dataType: 'script',
+// 		data:data,
+// 		success:function(data){
+// 			var obj=$.parseJSON(data);
+// 			alert(obj);
+// 			console.log(data);
+// 		}
+// 		});
+// 	});
+// });
+
+$.ajax({
+	url: '/path/to/file',
+	type: 'default GET (Other values: POST)',
+	dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+	data: {param1: 'value1'},
+})
+.done(function() {
+	console.log("success");
+})
+.fail(function() {
+	console.log("error");
+})
+.always(function() {
+	console.log("complete");
+});
